@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: 'AIzaSyB_HsbWqRya4JtHhmXUtd3_S4os3nNFiZg',
-    authDomain: 'expensetracker-af48a.firebaseapp.com',
-    databaseURL: 'https://expensetracker-af48a.firebaseio.com',
-    projectId: 'expensetracker-af48a',
-    storageBucket: 'expensetracker-af48a.appspot.com',
-    messagingSenderId: '1076962689225'
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
   },
 };
