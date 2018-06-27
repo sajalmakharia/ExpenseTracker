@@ -1,13 +1,13 @@
 # ExpenseTracker
 This is an application used for basic expense tracking with firebase backend
 
-#Features
+# Features
 1. User can signin or signup in this application
 2. Users can add,edit,delete and update items.
 3. For each items user can add Photo,Item Name and Item Price.
 4. Users can also do a sort (ascending/descending) based on price and createdDate and filter based on the name and image availablity.
 
-#Firebase Setup 
+# FireBase Setup
 1. Go to firebase and create an account
 2. Go to firebase console and create a new project(with some name and your country)
 3. In the get started section select add firebase to web and copy the configurations and keep it in your notpad.
@@ -47,7 +47,7 @@ This is an application used for basic expense tracking with firebase backend
       
     This is all that is required for the firebase setup.
     
-#Installation Steps
+# Installation Steps
 1. Clone the project.
 2. Please note that angular/cli version required is >=1.6.5
 3. Do npm install(to install local packages in your computer.
@@ -55,6 +55,6 @@ This is an application used for basic expense tracking with firebase backend
 src->environments->environment.ts file.
 5. You are now good to go.
 
-#Unit Test
+# Unit Test
 
 ng test
