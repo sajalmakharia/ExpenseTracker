@@ -1,0 +1,47 @@
+<div class="login-page">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img src="assets/splash.jpg" width="75px" class="user-avatar" />
+            <h1>Expense Tracker</h1>
+            <br>
+            <div class="form-box">
+                <form [formGroup]="loginForm">
+                    <div class="form-group" *ngIf="newUser" [ngClass]="displayFieldCss('fullName')">
+                        <input [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-underline input-lg" placeholder="Name">
+                        <p *ngIf="isNameEmpty">Please enter a Name</p>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('email')">
+                        <input formControlName="email" type="text" class="form-control input-underline input-lg" placeholder="User ID">
+                        <p *ngIf="!loginForm.get('email').valid">Please enter a valid email</p>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('password')">
+                        <input formControlName="password" type="password" class="form-control input-underline input-lg" placeholder="Password">
+                        <p *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Please enter a password</p>
+                        <p *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">Minimum length of password should be 6 characters</p>
+                    </div>
+                    <br>
+                    <button *ngIf="!newUser" class="btn btn-info rounded-btn btn-block login" [disabled]="!loginForm.valid" (click)="onSignIn()">
+                        Sign In
+                    </button>
+                    <a style="color: lightskyblue" *ngIf="!newUser" (click)="registerUser()">
+                        <u> Not a Registered User?</u>
+                    </a>
+                    <button *ngIf="newUser" class="btn btn-info rounded-btn btn-block login" [disabled]="!loginForm.valid" (click)="onSignUp()">
+                        Sign Up
+                    </button>
+                    <a style="color:lightskyblue" *ngIf="newUser" (click)="registerUser()">
+                        <u>SignIn</u>
+                    </a>
+                    <br>
+                    <div class="validator-error" *ngIf="errStr">
+                        <div class="alert alert-danger">Invalid Email or Password.</div>
+                    </div>
+                </form>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise"></ngx-spinner>
+</div>

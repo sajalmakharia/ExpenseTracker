@@ -1,0 +1,107 @@
+
+<div>
+    <div class="row">
+        <!-- <div class="col-md-3"></div> -->
+        <h4 class="discHead col-md-3">Item Register</h4>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <button class="btn btn-operation" type="submit" (click)="addItem()">
+                <i class="fa fa-plus"></i>
+                Add Item
+            </button>
+            <button class="btn btn-operation" type="submit" (click)="onSort()" *ngIf="isItemPresent">
+                <i class="fa fa-sort"></i>
+                Sort
+            </button>
+            <button class="btn btn-operation" type="submit" (click)="onFilter()" *ngIf="isItemPresent">
+                <i class="fa fa-filter"></i>
+                Filter
+            </button>
+        </div>
+    </div>
+    <!-- Criteria Section -->
+    <div id="imaginary_container" *ngIf="isItemPresent">
+        <div class="row catlist">
+            <div class="col-md-3">
+                <select class="form-control" (change)="tagCategorySelect($event.target.value)" [(ngModel)]="selectSortField">
+                    <option value="default">--Select Field--</option>
+                    <option value="price">Price</option>
+                    <option value="createdDate">Created Date</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" (change)="tagCategorySelect($event.target.value)" [(ngModel)]="selectSortType">
+                    <option value="default">--Select Order--</option>
+                    <option value="ascend">Ascending</option>
+                    <option value="descend">Descending</option>
+                </select>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="container">Item Name
+                    <input type="checkbox" [checked]="filterByName" (change)="filterNames()">
+                    <span class="checkmark"></span>
+                </label>
+                <input [(ngModel)]="searchNameKey" *ngIf="filterByName" type="text" class="form-control" placeholder="Filter Item" (change)="onFilter()">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="container">Image
+                            <input type="checkbox" [checked]="filterByImg" (change)="filterImages()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="filterByImg">
+                    <div class="col-md-4">
+                        <label class="container">Image Only
+                            <input type="radio" name="imgFilter" value="imgOnly" (change)="filterImg($event)">
+                            <span class="radiomark"></span>
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="container imageSelectFilter">Without Image Only
+                            <input type="radio" name="imgFilter" value="noImg" (change)="filterImg($event)">
+                            <span class="radiomark"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<table class="table table-sm table-hover table-striped" *ngIf="isItemPresent || filterItemPresent">
+    <thead>
+        <tr>
+            <th class="tablewidth">Item Name</th>
+            <th class="tablewidth">Price</th>
+            <th class="tablewidth">Added On</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of itemsList">
+            <td>{{item.name}}</td>
+            <td>&#8377; {{item.price}}</td>
+            <td>{{item.date}}</td>
+            <td class="align_right">
+                <a class="btn">
+                    <i class="fa fa-pencil-square-o" (click)="onEdit(item)"></i>
+                </a>
+                <a class="btn" (click)="onDelete(item)">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h6 class="col-md-2" *ngIf="!isItemPresent">
+    NO Item Present
+</h6>

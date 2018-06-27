@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <!--LHS UserId Display Section -->
+        <a class="navbar-brand" href="#">Welcome {{userName}} </a>
+
+    <!-- CENTER Heading Display -->
+    <div class="collapse navbar-collapse order-1 ml-auto">
+        <a class="navbar-brand ml-auto" href="#">Expense Tracker</a>
+    </div>    
+
+    <!-- RHS LOGOUT Display -->
+    <div class="collapse navbar-collapse order-2 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link mt-1" 
+                    style="padding: 0.375rem 1rem !important; border-color: #999;" 
+                    [routerLink]="['/login']"
+                    (click)="onLoggedout()"
+                >
+                    Logout
+                </a>
+            </li> &nbsp;
+        </ul>
+    </div>
+
+</nav>
