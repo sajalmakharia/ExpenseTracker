@@ -38,7 +38,7 @@ export class ItemListComponent implements OnInit {
         const y = element.payload.toJSON();
         y['$key'] = element.key;
         const date = new Date(y['created_at']);
-        const stringDate = date.getDate() + " " + monthNames[date.getMonth()];
+        const stringDate = date.getDate() + " " + monthNames[date.getMonth()]+ " "+ date.getFullYear();
         y['date'] = stringDate;
         this.itemList.push(y as Item);
       });

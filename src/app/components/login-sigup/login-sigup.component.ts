@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,8 @@ export class LoginSigupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private ngZone: NgZone
   ) {  }
   
 
@@ -77,9 +78,8 @@ export class LoginSigupComponent implements OnInit {
       details['name'] = this.userName;
       this.spinner.show();
       this.authenticationService.emailSignUp(details).then(response => {
-        this.toaster.success("Successfull registered");
-        this.spinner.hide();
         this.router.navigate(['/home']);
+        this.checkLoginStatus("Successfully registered")        
       }).catch(error => {
         this.spinner.hide();
         this.toaster.error(error.userError);
@@ -92,15 +92,24 @@ export class LoginSigupComponent implements OnInit {
       const pass = this.loginForm.controls['password'].value;
       this.spinner.show();
       this.authenticationService.emailLogin(email, pass).then(response => {
-        this.toaster.success("Successfull Logged In");
-        this.spinner.hide();
-        this.router.navigate(['/home']);
+        this.ngZone.run(() => this.router.navigateByUrl('/home'));
+        this.checkLoginStatus("Successfull Logged In");
       }).catch(error => {
         this.spinner.hide();
         this.errStr = true;
       })
 
     }
+  }
+  checkLoginStatus(message){
+    
+    setTimeout(()=>{
+      if(this.authenticationService.authenticated){
+        this.ngZone.run(() => this.router.navigateByUrl('/home'));
+        this.toaster.success(message);
+        this.spinner.hide();
+      }  
+    },2000)
   }
   removeErr(){
     this.errStr = false;
