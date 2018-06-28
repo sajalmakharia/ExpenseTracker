@@ -21,6 +21,7 @@ export class ItemListComponent implements OnInit {
   isItemPresent: boolean = true;
   searchNameKey: string = "";
   radioVal: string = "";
+  filterItemPresent: boolean = false;
   constructor(private expenseService: ExpenseService,
     private toaster: ToastrService,
     private modalService: NgbModal,
@@ -165,6 +166,9 @@ export class ItemListComponent implements OnInit {
           return (val.imageUrl === "");
         });
       }
+    }
+    if( this.itemsList.length === 0){
+      this.filterItemPresent = false;
     }
   }
 }

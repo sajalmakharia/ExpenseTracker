@@ -18,6 +18,7 @@ export class LoginSigupComponent implements OnInit {
   passReset = false;
   isNameEmpty = false;
   userName: string = "";
+  errStr: boolean = false;
   constructor(private authenticationService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -96,10 +97,13 @@ export class LoginSigupComponent implements OnInit {
         this.router.navigate(['/home']);
       }).catch(error => {
         this.spinner.hide();
-        this.toaster.error(error.message);
+        this.errStr = true;
       })
 
     }
+  }
+  removeErr(){
+    this.errStr = false;
   }
   changeListner(event) {
     var reader = new FileReader();

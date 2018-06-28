@@ -3,7 +3,6 @@ import { AppComponent } from './app.component';
 import { Location } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 import { Router,Routes } from "@angular/router";
-import { AppRoutingModule } from "./app-routing.module"
 import { Component } from '@angular/core';
 @Component({
   template: `Home`
@@ -15,7 +14,10 @@ export class HomeComponent {
 })
 export class LoginSigupComponent {
 }
-
+@Component({
+  template: `<router-outlet></router-outlet>`
+})
+class AppRoutingModule{}
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},

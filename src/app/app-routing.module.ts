@@ -13,7 +13,5 @@ export const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-@Component({
-    template: `<router-outlet></router-outlet>`
-  })
+
 export class AppRoutingModule {}

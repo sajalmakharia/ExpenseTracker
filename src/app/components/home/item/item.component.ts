@@ -22,7 +22,7 @@ export class ItemComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    private activeModal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
     private dataServ: DataService) { }
 
   // to the get the form reference
